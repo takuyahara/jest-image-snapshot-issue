@@ -9,15 +9,15 @@
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.5",
-    "babel-plugin-named-asset-import": "^0.3.1",
-    "babel-preset-react-app": "^7.0.2",
+    "babel-plugin-named-asset-import": "0.3.1",
+    "babel-preset-react-app": "7.0.2",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "eslint": "5.12.0",
-    "eslint-config-react-app": "^3.0.8",
+    "eslint-config-react-app": "3.0.8",
     "eslint-loader": "2.1.1",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.14.0",
@@ -30,7 +30,7 @@
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
-    "jest-watch-typeahead": "^0.2.1",
+    "jest-watch-typeahead": "0.2.1",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
@@ -38,10 +38,11 @@
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
-    "react": "^16.8.6",
-    "react-app-polyfill": "^0.2.2",
-    "react-dev-utils": "^8.0.0",
-    "react-dom": "^16.8.6",
+    "react": "16.8.6",
+    "react-app-polyfill": "0.2.2",
+    "react-dev-utils": "8.0.0",
+    "react-dom": "16.8.6",
+    "react-test-renderer": "16.8.6",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
@@ -55,7 +56,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "jest src/App.test.js --detectOpenHandles",
+    "jest-image": "jest src/App.image.test.js --detectOpenHandles",
+    "test-image": "start-server-and-test start http://localhost:3000 jest-image"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -66,54 +69,15 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "resolver": "jest-pnp-resolver",
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jsdom",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
-    "watchPlugins": [
-      "/Users/thara/Desktop/jest-image-snapshot-issue/node_modules/jest-watch-typeahead/filename.js",
-      "/Users/thara/Desktop/jest-image-snapshot-issue/node_modules/jest-watch-typeahead/testname.js"
-    ]
-  },
   "babel": {
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "jest-image-snapshot": "2.8.1",
+    "jest-puppeteer": "4.1.0",
+    "puppeteer": "1.14.0",
+    "start-server-and-test": "1.7.12"
   }
 }

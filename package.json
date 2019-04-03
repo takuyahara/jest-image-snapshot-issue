@@ -57,7 +57,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "jest src/App.test.js --detectOpenHandles",
-    "jest-image": "jest src/App.image.test.js --detectOpenHandles",
+    "jest-image": "jest src/App.image.test.js --updateSnapshot --detectOpenHandles",
     "test-image": "start-server-and-test start http://localhost:3000 jest-image"
   },
   "eslintConfig": {

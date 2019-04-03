@@ -19,6 +19,19 @@ before_install:
 script:
 - yarn test
 - yarn test-image
+after_success:
+# Prepare for GitHub
+- openssl aes-256-cbc -K $encrypted_e465b15c4041_key -iv $encrypted_e465b15c4041_iv -in ./id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- git config --global user.email "h.taku86@gmail.com"
+- git config --global user.name "takuyahara"
+- git config --global url."git@github.com:".insteadOf "https://github.com/"
+# Build Storybook
+- git checkout -b image master
+- git add .
+- git commit -m "$TRAVIS_COMMIT_MESSAGE"
+- git push -u origin image --force
 branches:
   only:
   - master
